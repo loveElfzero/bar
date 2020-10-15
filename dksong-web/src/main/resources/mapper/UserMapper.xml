@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smny.dksongweb.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="User">
+        <id column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="user_type" property="userType" />
+        <result column="user_phone" property="userPhone" />
+        <result column="user_password" property="userPassword" />
+        <result column="user_login_time" property="userLoginTime" />
+        <result column="user_create_time" property="userCreateTime" />
+        <result column="user_update_time" property="userUpdateTime" />
+        <result column="user_token" property="userToken" />
+        <result column="user_status" property="userStatus" />
+        <collection property="roleUsers" ofType="RoleUser" javaType="java.util.List">
+            <id column="role_id" property="roleId" />
+            <result column="user_id" property="userId" />
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        role_id, user_id
+    </sql>
+
+    <select id="selectByRoleId" parameterType="User" resultMap="BaseResultMap">
+        select bu.user_id,user_name,user_type,role_id
+            from bomb_user bu inner join bomb_role_user bru on bu.user_id=bru.user_id
+            where bu.user_id=#{user.userId,jdbcType=INTEGER}
+    </select>
+</mapper>
