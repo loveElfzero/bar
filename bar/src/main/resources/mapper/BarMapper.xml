@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mtp.bar.mapper.BarMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="Bar">
+        <id column="bar_id" property="barId" />
+        <result column="bar_name" property="barName" />
+        <result column="bar_content" property="barContent" />
+        <result column="bar_type_id" property="barTypeId" />
+        <result column="bar_type_name" property="barTypeName" />
+        <result column="bar_user_id" property="barUserId" />
+        <result column="bar_user_number" property="barUserNumber" />
+        <result column="bar_status" property="barStatus" />
+        <result column="bar_type" property="barType" />
+        <collection property="barCommentList" javaType="java.util.List" ofType="barComment">
+            <id column="bar_comment_id" property="barCommentId" />
+            <result column="bar_comment_content" property="barCommentContent" />
+            <result column="bar_reply_content" property="barReplyContent" />
+            <result column="bar_user_id" property="barUserId" />
+            <result column="bar_user_number" property="barUserNumber" />
+            <result column="bar_comment_user_id" property="barCommentUserId" />
+            <result column="bar_comment_user_number" property="barCommentUserNumber" />
+            <result column="bar_id" property="barId" />
+            <result column="bar_reply_status" property="barReplyStatus" />
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        bar_id, bar_name, bar_content, bar_type_id, bar_type_name, bar_user_id, bar_user_number, bar_status, bar_type
+    </sql>
+
+    <select id="selectByFields">
+
+
+    </select>
+
+</mapper>
